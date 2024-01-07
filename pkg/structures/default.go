@@ -44,6 +44,7 @@ func DefaultStrucute(path string) {
 		path = curPath
 	}
 
+	fmt.Println("Ctrl + C to cancel")
 	fmt.Print("Project name: ")
 	var name string
 	fmt.Scan(&name)
@@ -72,5 +73,11 @@ func createProject(userPath string, projname string) {
 	for fileInfo, fileContent := range files.Files {
 		var path = filepath.Join(userPath, projname, string(fileInfo))
 		writeFile(path, fileContent)
+	}
+
+	if Worked {
+		fmt.Println("Successfully created your new project!")
+	} else {
+		fmt.Println("Some errors occured when trying to create your project! Check if folder already exists!")
 	}
 }

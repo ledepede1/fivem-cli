@@ -9,6 +9,8 @@ type DefaultConfig struct {
 	SharedConfig []byte
 }
 
+var Structures = []string{"default", "Default"} // Will add reactjs on another time
+
 var DefaultStructure = DefaultConfig{
 	FxManifest: []byte(`fx_version 'adamant'
 
