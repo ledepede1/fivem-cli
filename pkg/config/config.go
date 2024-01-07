@@ -22,15 +22,17 @@ version '1.0'
 lua54 'yes'
 
 shared_scripts {
-  'Shared/Config.lua',
+	'Configs/Shared.lua',
 }
 
 client_scripts {
-  'Client/Main.lua',
+	'Configs/Cl_Config.lua',
+	'Client/Main.lua',
 }
 
 server_scripts {
-  'Server/Server.lua',
+	'Configs/Sv_Config.lua',
+	'Server/Server.lua',
 }
 `),
 
