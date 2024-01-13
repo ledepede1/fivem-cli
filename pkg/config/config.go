@@ -1,53 +1,62 @@
 package config
 
-type DefaultConfig struct {
-	FxManifest   []byte
-	ClientMain   []byte
-	ServerMain   []byte
-	ClConfig     []byte
-	SvConfig     []byte
-	SharedConfig []byte
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+)
+
+type Structures struct {
+	StructData map[string]StructData `json:"structures"`
 }
 
-var Structures = []string{"default", "Default"} // Will add reactjs on another time
-
-var DefaultStructure = DefaultConfig{
-	FxManifest: []byte(`fx_version 'adamant'
-
-game 'gta5'
-
-author 'your_name'
-description 'project_name'
-
-version '1.0'
-
-lua54 'yes'
-
-shared_scripts {
-	'Configs/Shared.lua',
+type StructData struct {
+	Label string `json:"label"`
+	Link  string `json:"link"`
 }
 
-client_scripts {
-	'Configs/Cl_Config.lua',
-	'Client/Main.lua',
+type StructDataWithKey struct {
+	Key  string     `json:"key"`
+	Data StructData `json:"data"`
 }
 
-server_scripts {
-	'Configs/Sv_Config.lua',
-	'Server/Server.lua',
+func GetStructData(structType string) (string, string, bool) {
+	var structures Structures
+
+	cfgFile, err := os.Open("config.json")
+	if err != nil {
+		return "", "", false
+	}
+	decoder := json.NewDecoder(cfgFile)
+	decoder.Decode(&structures)
+
+	data, found := structures.StructData[structType]
+	if found {
+		return data.Link, data.Link, false
+	}
+
+	return "", "", false
 }
-`),
 
-	ClientMain: []byte(`RegisterCommand("ping", function()
-	TriggerServerEvent("ping:command")
-end, false)`),
+func GetAllStructs() []StructDataWithKey {
+	var structures Structures
+	var structs = []StructDataWithKey{}
 
-	ServerMain: []byte(`RegisterNetEvent('ping:command', function()
-	print('Pong')
-end)
-`),
+	data, err := os.Open("config.json")
+	if err != nil {
+		fmt.Println(err)
+		return structs
+	}
 
-	ClConfig:     []byte(`Config = {}`),
-	SvConfig:     []byte(`Config = {}`),
-	SharedConfig: []byte(`Shared = {}`),
+	decoder := json.NewDecoder(data)
+	err = decoder.Decode(&structures)
+	if err != nil {
+		return structs
+	}
+
+	for k, v := range structures.StructData {
+		structs = append(structs, StructDataWithKey{Key: k, Data: v})
+	}
+
+	return structs
 }
