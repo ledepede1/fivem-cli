@@ -9,4 +9,4 @@
 Commands right now
 - create (Used for creating a new project)
 - structcreate (Used for creating a new structure in the config.json it works with Github repos)
-More to come in the future!
+> More to come in the future!
