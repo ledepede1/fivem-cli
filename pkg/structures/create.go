@@ -20,7 +20,7 @@ func StrucutreCreate(structure string, path string) {
 }
 
 func CreateStructure(structType string, path string) bool {
-	repoUrl, _, error := config.GetStructData(structType)
+	repoUrl, _, _ := config.GetStructData(structType)
 
 	if err := os.MkdirAll(path, os.ModePerm); err != nil {
 		fmt.Println("Error: ", err)
@@ -34,13 +34,15 @@ func CreateStructure(structType string, path string) bool {
 	})
 	if err != nil {
 		fmt.Print("Error: ", err)
+		return false
 	}
 
 	// Removing the .git folder
 	err = os.RemoveAll(path + "/.git")
 	if err != nil {
 		fmt.Println("Error in deleting .git folder")
+		return false
 	}
 
-	return error
+	return true
 }

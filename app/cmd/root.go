@@ -8,12 +8,12 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "forgestruct-cli",
+	Use:   "fstruct",
 	Short: "Forge Struct CLI is used for creating FiveM scripts",
 	Long:  `A CLI that helps with creating FiveM script project structures`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Forge Struct CLI is used for creating FiveM script structures")
-		fmt.Print("Need help type in 'forgestruct-cli --help'")
+		fmt.Print("Need help type in 'fstruct --help'")
 	},
 }
 
