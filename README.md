@@ -7,6 +7,6 @@
 
 ### Usage
 <p>Commands right now</p>
-> <p>create (Used for creating a new project)</p>
->  <p>structcreate (Used for creating a new structure in the config.json it works with Github repos)</p>
+<p>create (Used for creating a new project)</p>
+<p>structcreate (Used for creating a new structure in the config.json it works with Github repos)</p>
 More to come in the future!
