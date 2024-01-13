@@ -20,7 +20,6 @@ var createCmd = &cobra.Command{
 will ask you about the project name and what kind of project 
 youd like to get`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println(config.GetAllStructs())
 		if len(args) == 0 {
 			var structures = config.GetAllStructs()
 

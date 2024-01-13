@@ -25,7 +25,7 @@ func CreateStruct(structurename string, structurelabel string, url string) {
 	var structures Structures
 	var structs = make(map[string]StructData)
 
-	data, err := os.OpenFile("config.json", os.O_RDWR, 0660)
+	data, err := os.OpenFile(`C:\Program Files\ForgeStruct-CLI\config.json`, os.O_RDWR, 0660)
 	if err != nil {
 		fmt.Println(err)
 		return

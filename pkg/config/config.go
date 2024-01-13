@@ -23,7 +23,7 @@ type StructDataWithKey struct {
 func GetStructData(structType string) (string, string, bool) {
 	var structures Structures
 
-	cfgFile, err := os.Open("config.json")
+	cfgFile, err := os.OpenFile(`C:\Program Files\ForgeStruct-CLI\config.json`, os.O_RDWR, 0660)
 	if err != nil {
 		return "", "", false
 	}
@@ -42,7 +42,7 @@ func GetAllStructs() []StructDataWithKey {
 	var structures Structures
 	var structs = []StructDataWithKey{}
 
-	data, err := os.Open("config.json")
+	data, err := os.OpenFile(`C:\Program Files\ForgeStruct-CLI\config.json`, os.O_RDWR, 0660)
 	if err != nil {
 		fmt.Println(err)
 		return structs

@@ -1,24 +1,23 @@
 @echo off
- 
+
 REM Set the name of the executable
 set executable=fstruct.exe
+set config=config.json
+set toolFolder=ForgeStruct-CLI
+set installPath=C:\Program Files\%toolFolder%
 
-NET SESSION >nul 2>&1
-IF %ERRORLEVEL% EQU 0 (
-    REM Move the executable to a directory in the PATH
-    move "%~dp0%executable%" "C:\Program Files\%executable%"
+REM Create a dedicated folder for the tool
+mkdir "%installPath%" >nul 2>&1
 
-    REM Add the executable's directory to the user's PATH
-    setx PATH "%PATH%;C:\Program Files" /M
+REM Move the executable to the tool folder
+move "%~dp0%executable%" "%installPath%\%executable%"
 
-    echo Installation complete. You can now use '%executable%' from anywhere by typing %executable%.
-    REM Prompt user to press a key before closing
-    pause
-    exit /b 0
-) ELSE (
-    ECHO You need to open this in admin mode!
-    REM Prompt user to press a key before closing
-    pause
-)
+REM Move the config to the tool folder
+move "%~dp0%config%" "%installPath%\%config%"
 
- 
+REM Add the tool's directory to the system PATH
+setx PATH "%installPath%;%PATH%" /M >nul 2>&1
+
+echo Installation complete. You can now use '%executable%' from anywhere by typing %toolFolder%.bat.
+REM Prompt user to press a key before closing
+pause
