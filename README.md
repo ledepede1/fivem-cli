@@ -6,8 +6,8 @@ Start by cloning or downloading the repo and run the `installer.bat` in the `[in
 <p>Now you can use it by typing in `fstruct` in your console</p>
 
 ### Usage
-Commands right now
-- create (Used for creating a new project)
-- structcreate (Used for creating a new structure in the config.json it works with Github repos)
+Commands right now (root command is `fstruct`)
+- create {structure name} --name {project name} --path {project path} (Used for creating a new project)
+- structcreate --name {structure name} --label {structure label} --url {structure github url} (Used for creating a new structure in the config.json it works with Github repos)
 - fstruct --help (Will give you help if you are lost i will work on making my own help command soon)
 > More to come in the future!
