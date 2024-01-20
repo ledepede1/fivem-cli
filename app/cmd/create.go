@@ -49,7 +49,11 @@ youd like to get`,
 				fmt.Println(err)
 			}
 
-			structures.StrucutreCreate(structureType, finalPath)
+			if _, err := os.Stat(finalPath); os.IsNotExist(err) {
+				structures.StrucutreCreate(structureType, finalPath)
+			} else {
+				fmt.Println("Path is not empty ->", finalPath)
+			}
 		}
 	},
 }
