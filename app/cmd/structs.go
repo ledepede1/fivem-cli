@@ -30,7 +30,7 @@ to the config.json`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if len(args) == 0 {
-			fmt.Println("Need arguments: `delete` `add`")
+			fmt.Println("Need arguments: `delete` `add` `edit`")
 		} else if args[0] == "delete" {
 			if len(Cname) == 0 {
 				fmt.Println("Wrong usage of command needs to be `fstruct delete --name {name}`")
@@ -45,6 +45,12 @@ to the config.json`,
 				fmt.Println("Wrong usage of command needs to be `fstruct add --name {name} --label {label} --url {url}`")
 			} else {
 				structures.CreateStruct(Cname, label, url)
+			}
+		} else if args[0] == "edit" {
+			if len(args) <= 1 {
+				fmt.Println("Wrong usage of commands needs to be `fstruct edit {nameofstructure} optional(--name <newName> --label <newLabel> --url <newUrl>`)")
+			} else {
+				config.EditStructure(args[1], Cname, url, label)
 			}
 		}
 	},

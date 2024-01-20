@@ -20,7 +20,7 @@ func StrucutreCreate(structure string, path string) {
 }
 
 func CreateStructure(structType string, path string) bool {
-	repoUrl, _, _ := config.GetStructData(structType)
+	data, _ := config.GetStructData(structType)
 
 	if err := os.MkdirAll(path, os.ModePerm); err != nil {
 		fmt.Println("Error: ", err)
@@ -29,7 +29,7 @@ func CreateStructure(structType string, path string) bool {
 
 	// Cloning the repo
 	_, err := git.PlainClone(path, false, &git.CloneOptions{
-		URL:      repoUrl,
+		URL:      data.Link,
 		Progress: os.Stdout,
 	})
 	if err != nil {

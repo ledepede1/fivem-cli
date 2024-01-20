@@ -15,12 +15,6 @@ type StructData struct {
 	Link  string `json:"link"`
 }
 
-type StructDataWithKey struct {
-	Key   string `json:"key"`
-	Label string `json:"label"`
-	Link  string `json:"link"`
-}
-
 func CreateStruct(structurename string, structurelabel string, url string) {
 	var structures Structures
 	var structs = make(map[string]StructData)

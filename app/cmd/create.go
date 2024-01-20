@@ -24,8 +24,8 @@ youd like to get`,
 			var structures = config.GetAllStructs()
 
 			fmt.Println("List of avaible structures:")
-			for _, v := range structures {
-				fmt.Println("- " + v.Data.Label + " | " + v.Key)
+			for k, v := range structures {
+				fmt.Println("- " + v.Label + " | " + k)
 			}
 
 		} else if len(args) >= 1 {
