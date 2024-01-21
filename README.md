@@ -1,8 +1,8 @@
 # W.I.P
-<p>Still in early development and there are many things that needs to be fixed and added! <br></br> Feel free to contribute</p>
+<p>Still not done, i have some more ideas that i plan on adding in the future! <br></br> Feel free to contribute</p>
 
 ## About the Project
-A CLI tool made to store and organize your Project Structures (Using Github Repos). And creating new scripts with them. Made with Go.
+A CLI tool made to store and organize your Project Structures (Using Github Repos). And creating new scripts/projects with your stored structures. Made in Go.
 
 ## Want to try it out?
 Start by cloning or downloading the repo and run the `installer.bat` in the `[installer]` folder as an `Administrator` (Its important to run as admin else it cant finde the Program Files)
