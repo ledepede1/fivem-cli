@@ -1,6 +1,7 @@
 package structures
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"strings"
@@ -44,5 +45,71 @@ func CreateStructure(structType string, path string) bool {
 		return false
 	}
 
-	return true
+	var configData = config.GetUserConfig()
+	if configData.UseUserName {
+		fmt.Println("hey")
+
+		file, err := os.OpenFile(path+"/fxmanifest.lua", os.O_RDWR, 0644)
+		if err != nil {
+			if err == os.ErrNotExist {
+				file, err = os.OpenFile(path+"__resource.lua", os.O_RDWR, 0644)
+				if err == os.ErrNotExist {
+					fmt.Println("There is no __resource.lua or fxmanifest.lua in this structure!")
+					return false
+				}
+			} else {
+				fmt.Println(err)
+				return false
+			}
+		}
+		defer file.Close()
+
+		scanner := bufio.NewScanner(file)
+		var modifiedLines []string
+		for scanner.Scan() {
+			line := scanner.Text()
+
+			if strings.Contains(line, "author") {
+				line = fmt.Sprintf("author '%s'", configData.Username)
+			}
+			if strings.Contains(line, "description") {
+				line = "description 'new_description'"
+			}
+
+			modifiedLines = append(modifiedLines, line)
+		}
+
+		if err := scanner.Err(); err != nil {
+			fmt.Println("Error scanning file:", err)
+			return false
+		}
+
+		// Truncate the file before writing
+		err = file.Truncate(0)
+		if err != nil {
+			fmt.Println("Error truncating file:", err)
+			return false
+		}
+
+		// Move the file offset to the beginning
+		_, err = file.Seek(0, 0)
+		if err != nil {
+			fmt.Println("Error seeking file:", err)
+			return false
+		}
+
+		// Join the modified lines into a single string
+		modifiedContent := strings.Join(modifiedLines, "\n")
+
+		// Write the modified content to the file
+		_, err = file.WriteString(modifiedContent)
+		if err != nil {
+			fmt.Println("Error writing to file:", err)
+			return false
+		}
+
+		return true
+	} else {
+		return true
+	}
 }

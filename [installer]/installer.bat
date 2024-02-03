@@ -3,6 +3,7 @@
 REM Set the name of the executable
 set executable=fstruct.exe
 set config=config.json
+set userconfig=userconfig.json
 set toolFolder=ForgeStruct-CLI
 set installPath=C:\Program Files\%toolFolder%
 
@@ -14,6 +15,9 @@ move "%~dp0%executable%" "%installPath%\%executable%"
 
 REM Move the config to the tool folder
 move "%~dp0%config%" "%installPath%\%config%"
+
+REM Move the user config to the tool folder
+move "%~dp0%userconfig%" "%installPath%\%userconfig%"
 
 REM Add the tool's directory to the system PATH
 setx PATH "%installPath%;%PATH%" /M >nul 2>&1
