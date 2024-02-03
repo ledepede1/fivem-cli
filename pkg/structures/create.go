@@ -72,9 +72,6 @@ func CreateStructure(structType string, path string) bool {
 			if strings.Contains(line, "author") {
 				line = fmt.Sprintf("author '%s'", configData.Username)
 			}
-			if strings.Contains(line, "description") {
-				line = "description 'new_description'"
-			}
 
 			modifiedLines = append(modifiedLines, line)
 		}
