@@ -18,3 +18,5 @@ Commands right now (root command is `fstruct`)
 - **user usename --bool={true/false}** Used to select wether to use the Username or not in the `fxmanifest.lua` or `__resource.lua`
 - **fstruct --help** *(Will give you help if you are lost i will work on making my own help command soon)*
 > *More to come in the future!*
+
+This software is licensed under the [MIT License](https://github.com/ledepede1/forgestruct-cli/master/LICENSE)
